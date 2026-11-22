@@ -1,1 +1,1 @@
-"""Offline business baseline 0.1.0."""
+"""Offline business baseline 0.2.0."""

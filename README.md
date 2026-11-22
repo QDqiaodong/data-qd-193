@@ -17,7 +17,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/rig-pose --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际6项测试通过，演示摘要：
+实际23项测试通过（姿态6项、交接17项），演示摘要：
 
 ```json
 {
@@ -29,6 +29,14 @@ uv pip check --python .venv/bin/python
 ```
 
 报告原子新建，不覆盖旧文件或符号链接。演示路径已存在时请改用新输出名；输入结构/约束或文件错误退出2，正常业务诊断见契约。已实际核验重复JSON键拒绝且不生成结果、同名输出字节不变及符号链接不覆盖。
+
+## 按帧交接 spool
+
+动画组修订轨道、独立渲染进程按帧领取线稿并回交产物指纹时，用 `rig-pose-spool --spool DIR --request FILE` 维护本地交接目录：只重派线稿实际变化的帧，保留在制领取与已出图结果，晚到的旧凭据不会贴到新版上。一个目录只服务一份资产，首次可传空目录，多进程并发安全。接口、幂等与持久化边界见 [spool 文档](docs/spool.md)；可离线运行的交接示例：
+
+```sh
+.venv/bin/python examples/handoff.py
+```
 
 ## 当前能力与后续集成
 
