@@ -17,7 +17,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/rig-pose --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际23项测试通过（姿态6项、交接17项），演示摘要：
+实际66项测试通过（姿态6项、交接17项、验收43项），演示摘要：
 
 ```json
 {
@@ -36,6 +36,21 @@ uv pip check --python .venv/bin/python
 
 ```sh
 .venv/bin/python examples/handoff.py
+```
+
+## 离线安全框验收 crop
+
+合成组在任意子帧叠加画面时，采样表之外的运动也必须落在随时间收放的矩形安全框内。`rig-pose-crop` 提供离线验收：动画方 `check` 对整个闭合验收区间做精确判定并产出带凭证的报告，合成方 `verify` 只凭原请求与报告独立核验（精确有理数运算，不重跑检查）：
+
+```sh
+.venv/bin/rig-pose-crop check --request run/crop-request.json --output run/crop-report.json
+.venv/bin/rig-pose-crop verify --request run/crop-request.json --report run/crop-report.json
+```
+
+请求、报告、unsafe 见证与 safe 精确证明的格式及核验规则见 [crop 文档](docs/crop.md)；合成方可照做的验收示例：
+
+```sh
+.venv/bin/python examples/acceptance.py
 ```
 
 ## 当前能力与后续集成
