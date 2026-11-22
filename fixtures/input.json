@@ -1,0 +1,6 @@
+{
+  "joints":[{"id":"root","parent":null,"local":["1","0","0","1","0","0"]},{"id":"arm","parent":"root","local":["1","0","0","1","2","0"]}],
+  "tracks":[{"joint_id":"root","keys":[{"tick":0,"matrix":["1","0","0","1","0","0"]},{"tick":10,"matrix":["1","0","0","1","10","0"]}]}],
+  "vertices":[{"id":"tip","influences":[{"joint_id":"arm","point":["1","0"],"weight":"1"}]},{"id":"blend","influences":[{"joint_id":"root","point":["0","0"],"weight":"0.5"},{"joint_id":"arm","point":["0","0"],"weight":"0.5"}]}],
+  "edges":[["blend","tip"]],"sample_ticks":[0,5,10]
+}
