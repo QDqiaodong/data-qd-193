@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "data-qd-193"
-version = "0.3.0"
+version = "0.4.0"
 description = "二维骨架姿态与蒙皮"
 requires-python = ">=3.11"
 dependencies = []
@@ -13,6 +13,7 @@ dependencies = []
 rig-pose = "rig_pose.cli:main"
 rig-pose-spool = "rig_pose.spool:main"
 rig-pose-crop = "rig_pose.crop:main"
+rig-pose-worldlock = "rig_pose.worldlock:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

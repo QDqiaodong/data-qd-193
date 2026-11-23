@@ -17,7 +17,7 @@ uv pip check --python .venv/bin/python
 .venv/bin/rig-pose --source fixtures/input.json --output run/report-initial.json
 ```
 
-实际66项测试通过（姿态6项、交接17项、验收43项），演示摘要：
+实际97项测试通过（姿态6项、交接17项、验收43项、世界锁定31项），演示摘要：
 
 ```json
 {
@@ -51,6 +51,21 @@ uv pip check --python .venv/bin/python
 
 ```sh
 .venv/bin/python examples/acceptance.py
+```
+
+## 离线挂点世界锁定 worldlock
+
+动画师替换一条上游关节控制轨时，已摆好位置的挂点及其下方线稿要求在交付动画里原地不动。`rig-pose-worldlock` 把控制轨替换与挂点补偿编译成一份普通的 `rig-pose` 源文件（不是逐帧坐标表），锁定关节在编辑前的完整世界矩阵在整个 [0, 10⁶] 的每个实数 tick 保持不变：
+
+```sh
+.venv/bin/rig-pose-worldlock --request run/lock-request.json --output run/delivered.json
+.venv/bin/rig-pose --source run/delivered.json --output run/report-locked.json
+```
+
+交付形态（保留挂接/脱挂）、唯一可恢复判定与 blocked 诊断见 [worldlock 文档](docs/worldlock.md)；可运行的交付示例：
+
+```sh
+.venv/bin/python examples/worldlock.py
 ```
 
 ## 当前能力与后续集成
